@@ -1,0 +1,14 @@
+[
+  {
+    "title":"awesome station",
+    "author":"thatguy",
+    "body":"yeah, this is most definitely my favorite station",
+    "station":"G03"
+   },
+  {
+    "title":"worst station",
+    "author":"thisguy",
+    "body":"this one is definitely the worst",
+    "station":"F06"
+  }
+]

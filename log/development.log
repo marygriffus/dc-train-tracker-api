@@ -1,0 +1,43 @@
+
+
+Started GET "/" for ::1 at 2016-06-01 08:58:15 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/marygriffus/.rvm/gems/ruby-2.2.3@global/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (1.9ms)
+Completed 200 OK in 21ms (Views: 12.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (14.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (3.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateNotes (20160601130821)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (10.9ms)[0m  [1mCREATE TABLE "notes" ("id" serial primary key, "title" character varying, "author" character varying, "body" text, "station" text, "date" timestamp) [0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160601130821"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (5.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'notes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mNote Load (0.7ms)[0m  SELECT "notes".* FROM "notes"
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "notes" ("title", "author", "body", "station") VALUES ($1, $2, $3, $4) RETURNING "id"  [["title", "awesome station"], ["author", "thatguy"], ["body", "yeah, this is most definitely my favorite station"], ["station", "G03"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "notes" ("title", "author", "body", "station") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "worst station"], ["author", "thisguy"], ["body", "this one is definitely the worst"], ["station", "F06"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mNote Load (0.6ms)[0m  [1mSELECT "notes".* FROM "notes"[0m
+
+
+Started GET "/notes.json" for ::1 at 2016-06-01 09:30:31 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by NotesController#index as JSON
+  [1m[35mNote Load (0.5ms)[0m  SELECT "notes".* FROM "notes"
+Completed 200 OK in 18ms (Views: 4.8ms | ActiveRecord: 3.6ms)
