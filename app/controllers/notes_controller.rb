@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
 
   def index
-    @notes = Note.all.order(:created_at)
+    @notes = Note.all
     render json: @notes.to_json, status: :ok
   end
 
@@ -9,6 +9,8 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
     if @note.save
       render json: @note.to_json, status: :created
+    else
+      render json: @note.errors, status: :unprocessable_entity
     end
   end
 
@@ -16,6 +18,8 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     if @note.update(note_params)
       render json: @note.to_json, status: :ok
+    else
+      render json: @note.errors, status: :unprocessable_entity
     end
   end
 
