@@ -6,7 +6,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = @note.build(note_params)
+    @note = @note.new(note_params)
     if @note.save
       render json: @note.to_json, status: :created
     end
