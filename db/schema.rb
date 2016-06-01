@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20160601130821) do
   create_table "notes", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
-    t.text     "body"
-    t.text     "station"
-    t.datetime "date"
+    t.string    "body"
+    t.string     "station"
+    t.datetime "created_at"
   end
 
 end
