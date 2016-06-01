@@ -5,7 +5,7 @@ class CreateNotes < ActiveRecord::Migration
       t.string :author
       t.text :body
       t.text :station
-      t.datetime :date
+      t.datetime :created_at
     end
   end
 end
