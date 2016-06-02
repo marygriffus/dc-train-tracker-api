@@ -31,6 +31,6 @@ class NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permit(:title, :author, :body, :station)
+    params.require(:note).permit(:title, :author, :body, :station, :created_at)
   end
 end
